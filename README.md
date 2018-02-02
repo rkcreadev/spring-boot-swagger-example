@@ -1,2 +1,2 @@
 # spring-boot-swagger-example
-Spring boot app with swagger codegen
+Spring boot app with swagger-codegen
