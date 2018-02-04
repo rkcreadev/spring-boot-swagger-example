@@ -2,14 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>petstore</artifactId>
-        <groupId>com.rkcreadev.demo</groupId>
-        <version>0.1-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.rkcreadev.demo</groupId>
+        <artifactId>petstore-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
     <artifactId>swagger-api</artifactId>
+    <version>0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
@@ -24,6 +26,13 @@
         </dependency>
     </dependencies>
 
+    <properties>
+        <swagger.codegen.version>2.3.0</swagger.codegen.version>
+        <swagger.specification.path>${project.basedir}/src/main/resources/swagger.yaml</swagger.specification.path>
+        <swagger.model.package>io.swagger.models</swagger.model.package>
+        <swagger.controller.package>io.swagger.controllers</swagger.controller.package>
+    </properties>
+
     <build>
         <plugins>
             <!-- Generate REST default interface from Swagger spec -->
@@ -37,13 +46,13 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/swagger.yaml</inputSpec>
+                            <inputSpec>${swagger.specification.path}</inputSpec>
                             <language>spring</language>
                             <library>spring-boot</library>
                             <generateSupportingFiles>false</generateSupportingFiles>
-                            <!--<generateApiDocumentation>true</generateApiDocumentation>-->
-                            <modelPackage>com.rkcreadev.demo.petstore.api.dto</modelPackage>
-                            <apiPackage>com.rkcreadev.demo.petstore.api.controller</apiPackage>
+                            <generateApiDocumentation>true</generateApiDocumentation>
+                            <modelPackage>${swagger.model.package}</modelPackage>
+                            <apiPackage>${swagger.controller.package}</apiPackage>
                             <configOptions>
                                 <!--Generate only interface classes-->
                                 <interfaceOnly>true</interfaceOnly>
