@@ -12,6 +12,7 @@
 
     <artifactId>swagger-api</artifactId>
     <version>0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -29,8 +30,8 @@
     <properties>
         <swagger.codegen.version>2.3.0</swagger.codegen.version>
         <swagger.specification.path>${project.basedir}/src/main/resources/swagger.yaml</swagger.specification.path>
-        <swagger.model.package>io.swagger.models</swagger.model.package>
-        <swagger.controller.package>io.swagger.controllers</swagger.controller.package>
+        <swagger.model.package>com.rkcreadev.demo.petstore.api.model</swagger.model.package>
+        <swagger.controller.package>com.rkcreadev.demo.petstore.api.controller</swagger.controller.package>
     </properties>
 
     <build>
