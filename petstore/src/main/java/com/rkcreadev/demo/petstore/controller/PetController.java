@@ -16,12 +16,12 @@ public class PetController implements PetApi {
 
     @Override
     public ResponseEntity<ModelApiResponse> addPet(Pet body) {
-        return getOkWithMessage("Successful added pet");
+        return getOkWithMessage("Successful ADD pet");
     }
 
     @Override
     public ResponseEntity<ModelApiResponse> deletePet(Long petId, String apiKey) {
-        return null;
+        return getOkWithMessage("Successful DELETE pet");
     }
 
     @Override
@@ -36,12 +36,7 @@ public class PetController implements PetApi {
 
     @Override
     public ResponseEntity<ModelApiResponse> updatePet(Pet body) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<ModelApiResponse> updatePetWithForm(Long petId, String name, String status) {
-        return null;
+        return getOkWithMessage("Successful UPDATE pet");
     }
 
     private ResponseEntity<ModelApiResponse> getOkWithMessage(String msg) {
