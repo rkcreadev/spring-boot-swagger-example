@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/crypto_storage
+    url: jdbc:postgresql://localhost:5432/pet_store
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
