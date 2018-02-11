@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.rkcreadev.demo</groupId>
+        <artifactId>petstore-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>swagger-api</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <swagger.codegen.version>2.3.0</swagger.codegen.version>
+        <swagger.specification.path>${project.basedir}/src/main/resources/swagger.yaml</swagger.specification.path>
+        <swagger.model.package>com.rkcreadev.demo.petstore.api.model</swagger.model.package>
+        <swagger.controller.package>com.rkcreadev.demo.petstore.api.controller</swagger.controller.package>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Generate REST default interface from Swagger spec -->
+            <plugin>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>${swagger.codegen.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${swagger.specification.path}</inputSpec>
+                            <language>spring</language>
+                            <library>spring-boot</library>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <generateApiDocumentation>true</generateApiDocumentation>
+                            <modelPackage>${swagger.model.package}</modelPackage>
+                            <apiPackage>${swagger.controller.package}</apiPackage>
+                            <configOptions>
+                                <!--Generate only interface classes-->
+                                <interfaceOnly>true</interfaceOnly>
+                                <delegatePattern>true</delegatePattern>
+                                <java8>true</java8>
+                            </configOptions>
+                            <typeMappings>
+                                <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
+                            </typeMappings>
+                            <importMappings>
+                                <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
+                            </importMappings>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
